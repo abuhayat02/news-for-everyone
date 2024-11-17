@@ -6,6 +6,7 @@ import SignIn from "../Components/SignIn";
 import Authentications from './../Components/Authentications/Authentications';
 import Register from "../Components/Register";
 import NewsInfo from "../Components/NewsInfo";
+import Privet from './../Components/Authentications/Privet';
 
 
 
@@ -33,7 +34,7 @@ let routs = createBrowserRouter([
     },
     {
         path : '/news-info/:id',
-        element : <NewsInfo></NewsInfo>,
+        element :<Privet> <NewsInfo></NewsInfo></Privet>,
         loader : ({params}) => fetch(`https://openapi.programming-hero.com/api/news/${params.id}`)
     },
     {

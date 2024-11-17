@@ -2,15 +2,16 @@ import React, { useContext } from 'react'
 import Header from './Header'
 import SignInMethods from './SignInMethods'
 import FindUsOn from './FindUsOn'
-import { useLoaderData, useNavigate } from 'react-router-dom'
+import { useLoaderData, useLocation, useNavigate } from 'react-router-dom'
 import { DataInfo } from './Authentications/DataProvider'
 
 export default function NewsInfo() {
   let {detalsLoaction} = useContext(DataInfo);
-
+  let loc = useLocation()
+  console.log(loc)
   let naviget = useNavigate()
   let backHome = ()=>{
-    naviget(detalsLoaction.pathname)
+    naviget( loc.state ? loc.state : detalsLoaction.pathname)
   }
   let data = useLoaderData();
   return (
