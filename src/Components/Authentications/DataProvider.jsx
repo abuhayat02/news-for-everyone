@@ -1,12 +1,12 @@
 import React, { createContext, useEffect, useState } from 'react'
 import auth from '../../firebase.config'
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth'
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth'
 
 export let DataInfo = createContext(null)
 
 export default function DataProvider({ children }) {
     let [user, setUser] = useState(null);
-    let [detalsLoaction , setDetalsLoaction] = useState(null)
+    let [detalsLoaction, setDetalsLoaction] = useState(null)
 
 
     // sign in emali password provider 
@@ -35,19 +35,29 @@ export default function DataProvider({ children }) {
 
     // log out 
 
-    let logOut = ()=>{
-       return signOut(auth)
+    let logOut = () => {
+        return signOut(auth)
     }
+
+    // update user 
+
+    let updateUser = (updateInfo) => {
+        return updateProfile(auth.currentUser, updateInfo)
+    }
+
+
 
     // data provider 
 
     let informations = {
         emailPassSignIn,
         newUserWithEmailPass,
-        user ,
+        user,
         logOut,
         setDetalsLoaction,
-        detalsLoaction
+        detalsLoaction,
+        setUser,
+        updateUser
     }
     console.log(user)
     return (

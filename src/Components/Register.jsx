@@ -4,13 +4,21 @@ import { DataInfo } from './Authentications/DataProvider'
 
 export default function Register() {
     let navigete = useNavigate()
-    let {newUserWithEmailPass} = useContext(DataInfo);
+    let {newUserWithEmailPass , updateUser , user , setUser} = useContext(DataInfo);
     let hendelRegister = (e)=>{
         e.preventDefault();
         let email = e.target.email.value;
         let password = e.target.pass.value;
-        newUserWithEmailPass(email , password);
-        navigete('/')
+        let userName = e.target.name.value;
+        let photo = e.target.url.value;
+     
+        newUserWithEmailPass(email , password)
+        .then(data => {
+            updateUser({displayName : userName , photoURL : photo})
+            navigete('/')
+          
+        })
+    
     }
     return (
         <div className="  container mx-auto  min-h-screen">
@@ -24,13 +32,13 @@ export default function Register() {
                             <label className="label">
                                 <span className="label-text">Name</span>
                             </label>
-                            <input type="name" placeholder="Name" className="input  rounded-none input-bordered" required />
+                            <input type="name" placeholder="Name" name='name' className="input  rounded-none input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Photo Url</span>
                             </label>
-                            <input type="name" placeholder="Photo url" className="input  rounded-none input-bordered" required />
+                            <input type="name" name='url' placeholder="Photo url" className="input  rounded-none input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">

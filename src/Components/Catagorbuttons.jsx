@@ -11,7 +11,6 @@ export default function Catagorbuttons() {
 
     }, [])
 
-    console.log(categorys)
 
     return (
         <div>
